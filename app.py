@@ -29,6 +29,12 @@ fraud_model = FraudDetectionModel()  # __init__ will call load_model internally
 def index():
     return render_template('checkout.html')
 
+
+
+
+
+
+
 @app.route('/api/process_transaction', methods=['POST'])
 def process_transaction():
     try:
