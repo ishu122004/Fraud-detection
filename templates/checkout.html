@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block title %}Secure Checkout - Fraud Detection System{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Checkout Form -->
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-primary text-white py-3">
+                    <h3 class="mb-0">
+                        <i class="bi bi-credit-card me-2"></i>
+                        Secure Checkout
+                    </h3>
+                    <small class="opacity-75">Protected by AI-powered fraud detection</small>
+                </div>
+                
+                <div class="card-body p-4">
+                    <form id="checkout-form">
+                        <!-- Personal Information -->
+                        <div class="section-header mb-4">
+                            <h5 class="text-primary">
+                                <i class="bi bi-person me-2"></i>
+                                Personal Information
+                            </h5>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="name" class="form-label">Full Name *</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                                <div class="form-text">Enter your full legal name</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email Address *</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                                <div class="form-text">We'll send confirmation to this email</div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" name="phone">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="address" class="form-label">Billing Address *</label>
+                                <input type="text" class="form-control" id="address" name="address" required>
+                            </div>
+                        </div>
+                    
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <label for="billing_country" class="form-label">Billing Country *</label>
+        <select class="form-select" id="billing_country" name="billing_country" required>
+            <option value="">Select country...</option>
+            <option value="India">India</option>
+            <option value="United States">United States</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="Germany">Germany</option>
+            <option value="Nigeria">Nigeria</option>
+            <option value="Canada">Canada</option>
+            <!-- Add more countries as needed -->
+        </select>
+        <div class="form-text">Country for the billing address</div>
+    </div>
+</div>
+    
+                        <!-- Payment Information -->
+                        <div class="section-header mb-4">
+                            <h5 class="text-primary">
+                                <i class="bi bi-credit-card-2-front me-2"></i>
+                                Payment Information
+                            </h5>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="payment_method" class="form-label">Payment Method *</label>
+                                <select class="form-select" id="payment_method" name="payment_method" required>
+                                    <option value="">Choose payment method...</option>
+                                    <option value="card">Credit/Debit Card</option>
+                                    <option value="paypal">PayPal</option>
+                                    <option value="crypto">Cryptocurrency</option>
+                                    <option value="gpay">GPay</option>
+                                    <option value="paytm">Paytm</option>
+
+                                </select>
+                            </div>
+                            <div class="col-md-6"> 
+    <label for="amount" class="form-label">Amount (USD) *</label>
+    <div class="input-group">
+        <span class="input-group-text">Rs.</span>
+        <input type="number" class="form-control" id="amount" name="amount" 
+               step="0.01" min="0.01" required>
+    </div>
+    <div class="form-text">Enter any transaction amount</div>
+</div>
+
+                        
+                        <!-- Fraud Detection Status -->
+                        <div id="fraud-status" class="alert alert-info" style="display: none;">
+                            <div class="d-flex align-items-center">
+                                <div class="spinner-border spinner-border-sm me-2" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <span>Analyzing transaction security...</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg" id="submit-btn">
+                                <i class="bi bi-shield-check me-2"></i>
+                                Process Secure Payment
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Security Information -->
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <i class="bi bi-shield-check text-success" style="font-size: 2rem;"></i>
+                        <h6 class="mt-2">AI Protection</h6>
+                        <small class="text-muted">Advanced fraud detection</small>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <i class="bi bi-lock text-success" style="font-size: 2rem;"></i>
+                        <h6 class="mt-2">Secure Processing</h6>
+                        <small class="text-muted">Bank-level encryption</small>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <i class="bi bi-clock text-success" style="font-size: 2rem;"></i>
+                        <h6 class="mt-2">Real-time Analysis</h6>
+                        <small class="text-muted">Instant verification</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Transaction Result Modal -->
+<div class="modal fade" id="resultModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" id="modal-header">
+                <h5 class="modal-title" id="modal-title">Transaction Result</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Content will be filled by JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a href="/dashboard" class="btn btn-primary">View Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/checkout.js') }}"></script>
+{% endblock %}

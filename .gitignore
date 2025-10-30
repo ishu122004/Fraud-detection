@@ -1,0 +1,23 @@
+# Ignore virtual environments
+venv/
+__pycache__/
+
+# Ignore local environment variables
+.env
+.env.example
+
+# Ignore large raw data
+data/
+*.csv
+
+# Ignore logs and temp files
+*.log
+.DS_Store
+
+# Ignore notebooks and checkpoints (if any)
+*.ipynb_checkpoints/
+
+# Keep only the essentials for deployment
+# Model files handled by Git LFS
+*.pkl filter=lfs diff=lfs merge=lfs -text
+*.db filter=lfs diff=lfs merge=lfs -text
